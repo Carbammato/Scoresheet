@@ -11,3 +11,8 @@ export class GroupParticipant {
     playerId: string;
     isActive: boolean;
 }
+
+export interface CreateGroupData {
+    group: Group;
+    password: string;
+}

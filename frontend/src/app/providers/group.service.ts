@@ -2,7 +2,8 @@ import { Inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ENDPOINT_URL } from "./tokens";
-import { Group } from "../models/group.model";
+import { CreateGroupData, Group } from "../models/group.model";
+import { IdPasswordModel } from "../models/shared.model";
 
 @Injectable()
 export class GroupService {
@@ -27,10 +28,8 @@ export class GroupService {
     }
 
     createGroup(group: Group, password: string): Observable<boolean> {
-        return this.httpClient.post<boolean>(`${this.endpoint}/Add`, {
-            group,
-            password,
-        });
+        const body: CreateGroupData = { group, password };
+        return this.httpClient.post<boolean>(`${this.endpoint}/Add`, body);
     }
 
     joinGroup(
@@ -38,9 +37,10 @@ export class GroupService {
         userId: string,
         password: string
     ): Observable<boolean> {
+        const body: IdPasswordModel = { id: userId, password };
         return this.httpClient.post<boolean>(
             `${this.baseUrl}/Join/${groupId}`,
-            { userId, password }
+            body
         );
     }
 
@@ -52,9 +52,10 @@ export class GroupService {
     }
 
     updateGroup(group: Group, password: string): Observable<boolean> {
+        const body: CreateGroupData = { group, password };
         return this.httpClient.put<boolean>(
             `${this.endpoint}/Update/${group.id}`,
-            { group, password }
+            body
         );
     }
 
