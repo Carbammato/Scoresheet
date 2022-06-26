@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { HomeComponent } from "./components/home/home.component";
+import { ENDPOINT_URL } from "./providers/tokens";
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -16,7 +17,7 @@ import { HomeComponent } from "./components/home/home.component";
         ItemDetailComponent,
         HomeComponent,
     ],
-    providers: [],
+    providers: [{ provide: ENDPOINT_URL, useValue: "./" }],
     schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule {}
