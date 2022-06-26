@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { ENDPOINT_URL } from "./tokens";
 import { CreateGroupData, Group } from "../models/group.model";
 import { IdPasswordModel } from "../models/shared.model";
+import { Player } from "../models/player.model";
 
 @Injectable()
 export class GroupService {
@@ -21,8 +22,8 @@ export class GroupService {
         );
     }
 
-    getPlayersInGroup(groupId: string): Observable<Group[]> {
-        return this.httpClient.get<Group[]>(
+    getPlayersInGroup(groupId: string): Observable<Player[]> {
+        return this.httpClient.get<Player[]>(
             `${this.endpoint}/GetPlayers/${groupId}`
         );
     }
